@@ -23,7 +23,7 @@ export default function Events() {
         "Dessert: Persian Ice cream"
       ],
       price: "$120 PP",
-      image: "/New folder/WhatsApp%20Image%202025-12-17%20at%208.00.44%20AM.jpeg",
+      image: "/New folder/WhatsApp%20Image%202025-12-17%20at%208.00.46%20AM.jpeg",
       cta: "Call (02) 9211 7706 to Book"
     }
   ];
