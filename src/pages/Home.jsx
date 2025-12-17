@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import philosophyBg from '../assets/philosophy-bg.jpg';
+// import reviewsBg from '../assets/reviews-bg.jpg'; // Uncomment this line after adding the image file
 
 export default function Home() {
   const [isVisible, setIsVisible] = useState(false);
@@ -52,8 +54,17 @@ export default function Home() {
       </section>
 
       {/* Introduction Section */}
-      <section className="py-24 md:py-32 bg-white">
-        <div className="container-custom max-w-4xl text-center">
+      <section className="relative py-24 md:py-32 bg-white overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src={philosophyBg} 
+            alt="Philosophy Background" 
+            className="w-full h-full object-cover opacity-40"
+          />
+        </div>
+
+        <div className="relative z-10 container-custom max-w-4xl text-center">
           <h2 className="text-sm font-bold tracking-[0.2em] text-primary-600 mb-6 uppercase">Our Philosophy</h2>
           <p className="text-3xl md:text-5xl font-serif leading-tight text-neutral-900 mb-8">
             "We believe that food is more than just sustenance. It is a language that speaks of culture, passion, and the joy of gathering together."
@@ -171,38 +182,80 @@ export default function Home() {
       </section>
 
       {/* Reviews Section */}
-      <section className="py-24 bg-neutral-50">
-        <div className="container-custom max-w-6xl">
+      <section className="relative py-24 overflow-hidden">
+        {/* Background Image with Overlay */}
+        <div className="absolute inset-0 z-0">
+           <img 
+            src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?q=80&w=2070" 
+            // src={reviewsBg} // Uncomment this line and remove the line above after adding the image file
+            alt="Restaurant Ambience" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-neutral-50/55 backdrop-blur-sm"></div>
+        </div>
+
+        {/* Decorative elements */}
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
+            <div className="absolute top-0 left-0 w-64 h-64 bg-primary-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 -translate-x-1/2 -translate-y-1/2"></div>
+            <div className="absolute bottom-0 right-0 w-96 h-96 bg-orange-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 translate-x-1/2 translate-y-1/2"></div>
+        </div>
+
+        <div className="container-custom max-w-7xl relative z-10">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-serif mb-4">Guest Experiences</h2>
+            <h2 className="text-sm font-bold tracking-[0.2em] text-primary-600 mb-3 uppercase">Testimonials</h2>
+            <h3 className="text-4xl md:text-5xl font-serif font-bold text-neutral-900">Guest Experiences</h3>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
             {[
               {
-                title: "This is a fabulous restaurant, in a great location on Jones Bay wharf.",
-                text: "OMG, sensational vegan Persian food and a hostess who just made us feel so welcome. From the to die for falafel to baked eggplant, Persian curries with rice, sour and delicious barberries and pomegranate molasses, turkish coffee, beautiful vegan friendly wines. We will be back!",
+                title: "Fabulous restaurant",
+                text: "OMG, sensational vegan Persian food and a hostess who just made us feel so welcome. From the to die for falafel to baked eggplant, Persian curries with rice... We will be back!",
                 author: "Stefan",
-                source: "(Google Review)"
+                source: "Google Review",
+                initial: "S",
+                color: "bg-blue-100 text-blue-600"
               },
               {
-                title: "Excellent food and very welcoming and personable service!",
+                title: "Excellent food & service",
                 text: "Carefully considered recommendations and adaptions for those with nut allergies and a beautiful sharing of cultural influences and history. Great coffee too!",
                 author: "Cassandra",
-                source: "(Google Review)"
+                source: "Google Review",
+                initial: "C",
+                color: "bg-rose-100 text-rose-600"
               },
               {
-                title: "Can't wait to go back. Highly recommend this place if you like Lebanese food.",
-                text: "This falafel stack is the most delicious thing I have ever had. I went there with colleagues and everyone loved what they called for. We also had fried cauliflower to share and it was to die for, I absolutely loved it. The lady who was serving us was very friendly. I must say the presentation was on point, very impressive.",
+                title: "Highly recommend",
+                text: "This falafel stack is the most delicious thing I have ever had. I went there with colleagues and everyone loved what they called for. The presentation was on point, very impressive.",
                 author: "Jinal",
-                source: "(Google Review)"
+                source: "Google Review",
+                initial: "J",
+                color: "bg-amber-100 text-amber-600"
               }
             ].map((review, index) => (
-              <div key={index} className="text-center px-4">
-                <div className="text-primary-600 text-4xl mb-4 font-serif">"</div>
-                <h3 className="text-lg font-bold mb-4 font-serif text-neutral-800">{review.title}</h3>
-                <p className="text-gray-600 italic mb-6 leading-relaxed text-base">"{review.text}"</p>
-                <div className="font-medium text-neutral-900">{review.author}</div>
-                <div className="text-sm text-gray-500 uppercase tracking-wider mt-1">{review.source}</div>
+              <div 
+                key={index} 
+                className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-neutral-100 flex flex-col h-full"
+              >
+                <div className="flex items-center gap-4 mb-6">
+                  <div className={`w-12 h-12 rounded-full ${review.color} flex items-center justify-center font-serif font-bold text-xl`}>
+                    {review.initial}
+                  </div>
+                  <div>
+                    <div className="font-bold text-neutral-900">{review.author}</div>
+                    <div className="text-xs text-gray-500 uppercase tracking-wider">{review.source}</div>
+                  </div>
+                  <div className="ml-auto text-yellow-400 flex gap-1 text-sm">
+                    {[...Array(5)].map((_, i) => (
+                      <span key={i}>★</span>
+                    ))}
+                  </div>
+                </div>
+                
+                <div className="mb-4">
+                  <h4 className="text-lg font-bold font-serif text-neutral-800 mb-2">{review.title}</h4>
+                  <p className="text-gray-600 leading-relaxed italic">{review.text}</p>
+                </div>
               </div>
             ))}
           </div>
