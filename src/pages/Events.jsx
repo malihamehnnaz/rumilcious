@@ -2,11 +2,19 @@ export default function Events() {
   const events = [
     {
       id: 2,
-      title: "Christmas Lunch at Rumilicious!",
+      title: "Christmas Lunch !",
       date: "December 25",
       time: "11:30am - 4:00pm",
       description: "Join us for a beautiful Christmas Lunch. Celebrate the season with your loved ones in our warm and festive atmosphere.",
-      highlights: ["Roasted turkey", "Roasted ham", "Organic vegetables", "Christmas pudding"],
+      highlights: [
+        "Entrée: Prawn Cocktail",
+        "Entrée: Cauliflower",
+        "Main Dish: Roasted Turkey with Cranberries sauce",
+        "Main Dish: Roasted Leg Ham",
+        "Main Dish: Roasted Vegetables",
+        "Dessert: Christmas pudding with Brandy Custard",
+        "Dessert: Pavlova Sugar Candy floss"
+      ],
       image: "/New folder/WhatsApp%20Image%202025-12-17%20at%207.38.10%20AM.jpeg",
       cta: "Call (02) 9211 7706 to Book"
     },
@@ -120,3 +128,4 @@ export default function Events() {
     </div>
   );
 }
+

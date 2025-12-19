@@ -4,7 +4,8 @@ export default function Menu() {
       title: 'Breakfast Menu',
       images: [
         "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?w=800&q=80",
-        "https://images.unsplash.com/photo-1550317138-10000687a72b?w=800&q=80"
+        "https://images.unsplash.com/photo-1525351484163-7529414344d8?w=800&q=80",
+        "https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=800&q=80"
       ],
       items: [
         {
@@ -30,11 +31,6 @@ export default function Menu() {
         {
           name: 'Green Eggs',
           description: 'Scrambled Eggs on Sourdough with Avocado, Salsa Verde and Choice of: Smoked Salmon / Ham / Bacon / Haloumi',
-          price: '$28'
-        },
-        {
-          name: 'Shakshuka',
-          description: 'Choice of: Lamb / Chicken / Chorizo / Ham / Haloumi / Falafel. Poached Free Range Eggs Simmered in a Rich, Spiced Capsicum, Tomato and Bell Pepper Sauce. Infused with Garlic, Cumin and Paprika. Served with Warm, Crusty Bread for Dipping',
           price: '$28'
         },
         {
@@ -166,59 +162,60 @@ export default function Menu() {
       </section>
 
       {/* Menu Categories */}
-      {menuCategories.map((category, categoryIndex) => (
-        <section key={categoryIndex} className={`py-20 px-4 ${categoryIndex % 2 === 0 ? 'bg-white' : 'bg-neutral-50'}`}>
-          <div className="max-w-7xl mx-auto">
-            {/* Category Title */}
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-serif font-bold text-neutral-900 mb-4">
-                {category.title}
-              </h2>
-              {category.subtitle && (
-                <p className="text-lg text-gray-600 italic mb-4">{category.subtitle}</p>
-              )}
-              <div className="w-24 h-1 bg-primary-600 mx-auto"></div>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-              {/* Images Section - Alternating order based on index */}
-              <div className={`grid grid-cols-2 gap-4 ${categoryIndex % 2 === 1 ? 'lg:order-2' : ''}`}>
-                <img 
-                  src={category.images[0]} 
-                  alt={`${category.title} ambience`}
-                  className="w-full h-64 object-cover rounded-lg shadow-md mt-8 transform hover:scale-105 transition-transform duration-500"
-                />
-                <img 
-                  src={category.images[1]} 
-                  alt={`${category.title} detail`}
-                  className="w-full h-64 object-cover rounded-lg shadow-md transform hover:scale-105 transition-transform duration-500"
-                />
+      {menuCategories.map((category, categoryIndex) => {
+        const isVertical = category.title === 'Breakfast Menu' || category.title === 'Kebabs';
+        return (
+          <section key={categoryIndex} className={`py-12 px-4 ${categoryIndex % 2 === 0 ? 'bg-white' : 'bg-neutral-50'}`}>
+            <div className="max-w-7xl mx-auto">
+              {/* Category Title */}
+              <div className="text-center mb-12">
+                <h2 className="text-4xl md:text-5xl font-serif font-bold text-neutral-900 mb-4">
+                  {category.title}
+                </h2>
+                {category.subtitle && (
+                  <p className="text-lg text-gray-600 italic mb-4">{category.subtitle}</p>
+                )}
+                <div className="w-24 h-1 bg-primary-600 mx-auto"></div>
               </div>
 
-              {/* Menu Items List */}
-              <div className={`${categoryIndex % 2 === 1 ? 'lg:order-1' : ''}`}>
-                <div className="space-y-8">
-                  {category.items.map((item, itemIndex) => (
-                    <div key={itemIndex} className="border-b border-neutral-200 pb-6 last:border-0 group">
-                      <div className="flex justify-between items-baseline mb-2">
-                        <h3 className="text-xl font-serif font-bold text-neutral-900 group-hover:text-primary-600 transition-colors">
-                          {item.name}
-                        </h3>
-                        <span className="text-lg font-bold text-primary-600 ml-4">
-                          {item.price}
-                        </span>
-                      </div>
-                      <p className="text-gray-600 leading-relaxed text-sm md:text-base">
-                        {item.description}
-                      </p>
-                    </div>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                {/* Images Section - Alternating order based on index */}
+                <div className={`${isVertical ? 'flex flex-col' : 'grid grid-cols-2'} gap-4 ${categoryIndex % 2 === 1 ? 'lg:order-2' : ''}`}>
+                  {category.images.map((imgSrc, i) => (
+                    <img 
+                      key={i}
+                      src={imgSrc} 
+                      alt={`${category.title} image ${i + 1}`}
+                      className={`w-full ${category.title === 'Kebabs' ? 'h-80' : 'h-64'} object-cover rounded-lg shadow-md transform hover:scale-105 transition-transform duration-500`}
+                    />
                   ))}
+                </div>
+
+                {/* Menu Items List */}
+                <div className={`${categoryIndex % 2 === 1 ? 'lg:order-1' : ''}`}>
+                  <div className="space-y-8">
+                    {category.items.map((item, itemIndex) => (
+                      <div key={itemIndex} className="border-b border-neutral-200 pb-6 last:border-0 group">
+                        <div className="flex justify-between items-baseline mb-2">
+                          <h3 className="text-xl font-serif font-bold text-neutral-900 group-hover:text-primary-600 transition-colors">
+                            {item.name}
+                          </h3>
+                          <span className="text-lg font-bold text-primary-600 ml-4">
+                            {item.price}
+                          </span>
+                        </div>
+                        <p className="text-gray-600 leading-relaxed text-sm md:text-base">
+                          {item.description}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
-      ))}
+          </section>
+        );
+      })}
 
       {/* Call to Action */}
       <section className="relative py-32 px-4">
