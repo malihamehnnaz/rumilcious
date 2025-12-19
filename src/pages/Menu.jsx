@@ -186,7 +186,7 @@ export default function Menu() {
                       key={i}
                       src={imgSrc} 
                       alt={`${category.title} image ${i + 1}`}
-                      className={`w-full ${category.title === 'Kebabs' ? 'h-80' : 'h-64'} object-cover rounded-lg shadow-md transform hover:scale-105 transition-transform duration-500`}
+                      className={`w-full ${category.title === 'Kebabs' ? 'h-[500px]' : 'h-80'} object-cover object-center rounded-lg shadow-md transform hover:scale-105 transition-transform duration-500`}
                     />
                   ))}
                 </div>

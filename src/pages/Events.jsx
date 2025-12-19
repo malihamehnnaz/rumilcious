@@ -14,7 +14,7 @@ export default function Events() {
         "Dessert: Christmas pudding with Brandy Custard",
         "Dessert: Pavlova Sugar Candy floss"
       ],
-      image: "/New folder/WhatsApp%20Image%202025-12-17%20at%207.38.10%20AM.jpeg",
+      image: "/New folder/Gemini_Generated_Image_ig7qsrig7qsrig7q.png",
       cta: "Call (02) 9211 7706 to Book"
     },
     {
@@ -30,7 +30,7 @@ export default function Events() {
         "Dessert: Persian Ice cream"
       ],
       price: "$120 PP",
-      image: "/New folder/WhatsApp%20Image%202025-12-17%20at%208.00.46%20AM.jpeg",
+      image: "/New folder/WhatsApp%20Imafge%202025-12-17%20at%207.38.12%20AM.jpeg",
       cta: "Call (02) 9211 7706 to Book"
     }
   ];
@@ -63,11 +63,11 @@ export default function Events() {
             {events.map((event) => (
               <div key={event.id} className="bg-white rounded-xl shadow-lg overflow-hidden border border-neutral-100 hover:shadow-xl transition-shadow duration-300 flex flex-col">
                 {/* Image Section */}
-                <div className="relative h-64">
+                <div className="relative h-[450px]">
                   <img 
                     src={event.image} 
                     alt={event.title} 
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover object-center"
                   />
                   <div className="absolute top-4 right-4 bg-red-600 text-white px-3 py-1 text-sm font-bold rounded-full shadow-md">
                     {event.date}
