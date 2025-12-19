@@ -7,8 +7,7 @@ export default function Events() {
       time: "11:30am - 4:00pm",
       description: "Join us for a beautiful Christmas Lunch. Celebrate the season with your loved ones in our warm and festive atmosphere.",
       highlights: [
-        "Entrée: Prawn Cocktail",
-        "Entrée: Cauliflower",
+        "Entrée: Prawn Cocktail ,Cauliflower",
         "Main Dish: Roasted Turkey with Cranberries sauce",
         "Main Dish: Roasted Leg Ham",
         "Main Dish: Roasted Vegetables",
@@ -20,14 +19,14 @@ export default function Events() {
     },
     {
       id: 1,
-      title: "New Year’s Eve",
+      title: "New Year’s Celebration",
       date: "December 31",
       time: "Evening Celebration",
       description: "Celebrate New Year’s Eve at Rumilicious 🎉 Tickets are almost sold out — please book now!",
       highlights: [
-        "Appetizers: Hummus trio, Eggplant dip, Falafel, Cauliflower",
-        "Mains: Chicken with barberry rice & pistachios",
-        "Persian kebab Lamb and Chicken",
+        "Entrée: Hummus trio, Eggplant dip, Falafel, Cauliflower",
+        "Main Dish: Chicken with barberry rice & pistachios",
+        "Main Dish: Persian kebab Lamb and Chicken",
         "Dessert: Persian Ice cream"
       ],
       price: "$120 PP",
