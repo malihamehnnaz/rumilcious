@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import philosophyBg from '../assets/philosophy-bg.jpg';
+import HappyHourBanner from '../components/HappyHourBanner';
 // import reviewsBg from '../assets/reviews-bg.jpg'; // Uncomment this line after adding the image file
 
 export default function Home() {
@@ -10,15 +11,47 @@ export default function Home() {
     setIsVisible(true);
   }, []);
 
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+
+    const setStart = () => {
+      try {
+        if (v.currentTime < 4) {
+          v.currentTime = 4;
+        }
+        v.play().catch((e) => console.log('Autoplay prevented:', e));
+      } catch (e) {
+        console.log('Error setting video time:', e);
+      }
+    };
+
+    if (v.readyState >= 1) {
+      setStart();
+    } else {
+      v.addEventListener('loadedmetadata', setStart);
+    }
+
+    return () => {
+      v.removeEventListener('loadedmetadata', setStart);
+    };
+  }, []);
+
   return (
     <div className="overflow-hidden bg-white">
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center">
         <div className="absolute inset-0">
-          <img 
-            src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=2070" 
-            alt="Restaurant Ambience" 
+          <video
+            ref={videoRef}
+            src="/hero-video.mp4"
             className="w-full h-full object-cover"
+            autoPlay
+            muted
+            loop
+            playsInline
           />
           <div className="absolute inset-0 bg-black/40"></div>
         </div>
@@ -181,6 +214,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Happy Hour rolling banner */}
+      <HappyHourBanner />
+
       {/* Reviews Section */}
       <section className="relative py-24 overflow-hidden">
         {/* Background Image with Overlay */}
@@ -282,3 +318,5 @@ export default function Home() {
     </div>
   );
 }
+
+// Add videoRef handling so the hero video starts at 4 seconds
